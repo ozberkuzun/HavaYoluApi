@@ -1,0 +1,75 @@
+﻿@model IEnumerable<HavaYoluMVC.Models.MVCPilotmodel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Ekle")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PilotAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PilotYas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PilotTecrube)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UcakNo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PilotAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PilotYas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PilotTecrube)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UcakNo)
+            </td>
+            <td>
+                @*crud=listele,ekle,guncelle,sil
+                    crup=ekle,güncelle*@
+                @* eklemeyi ve düzenlemeyi aynı yerden yapmak için crup denir.*@
+                <a href="@Url.Action("Ekle","Pilot",new { id=item.PilotNo})" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i>Edit</a>
+                <a onclick="sil(@item.PilotNo)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>Sil</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts{
+    <script>
+        $(function () {
+
+            var successMessage ='@TempData["SuccessMessage"]';          /* uyarıyı farklı bir view sayfasında vermek istiyorsak tempdata kullanıyoruz aynı sayfada ise viewdata kullanıyoruz. */
+            if (successMessage != '')
+                alertify.success(successMessage);
+            });
+
+        function sil(id) {
+            alertify.confirm("silme islemi", "kayıtı silmek istermisin ?", function () {    /* if else yerine geçer soru işareti (?) */
+                window.location.href = '@Url.Action("sil","Pilot")/' + id;}, null);    /* window.location.href=pop up haline getiriyor uyarıyı*/
+
+        }
+
+
+
+    </script>
+}

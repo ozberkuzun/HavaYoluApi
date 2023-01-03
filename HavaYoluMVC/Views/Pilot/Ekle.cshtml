@@ -1,0 +1,57 @@
+﻿@model HavaYoluMVC.Models.MVCPilotmodel
+@{
+    ViewBag.Title = "Ekle";
+}
+
+<div class="form-body">
+
+    @using (Html.BeginForm())
+    {
+
+        @Html.HiddenFor(model => model.PilotNo)
+
+        <div class="form-control">
+            @Html.LabelFor(Model => Model.PilotAdi)<br />
+        </div>
+        <div class="form-control">
+            @Html.EditorFor(Model => Model.PilotAdi)
+            @Html.ValidationMessageFor(model => model.PilotAdi)
+        </div>
+
+
+        <div class="form-control">
+            @Html.LabelFor(Model => Model.PilotYas)<br />
+        </div>
+        <div class="form-control">
+            @Html.EditorFor(Model => Model.PilotYas)
+            @Html.ValidationMessageFor(model => model.PilotYas)
+        </div>
+
+        <div class="form-control">
+            @Html.LabelFor(Model => Model.PilotTecrube)<br />
+        </div>
+        <div class="form-control">
+            @Html.EditorFor(Model => Model.PilotTecrube)
+            @Html.ValidationMessageFor(model => model.PilotTecrube)
+        </div>
+
+        <div class="form-control">
+            @Html.LabelFor(Model => Model.UcakNo)<br />
+        </div>
+        <div class="form-control">
+            @Html.EditorFor(Model => Model.UcakNo)
+            @Html.ValidationMessageFor(model => model.UcakNo)
+        </div>
+
+        <div class="form-control">
+            <input type="submit" value="kaydet" class="btn btn-success" />
+            <input type="reset" value="reset" class="btn btn-success" />
+        </div>
+
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}
+

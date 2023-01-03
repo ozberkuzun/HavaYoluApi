@@ -1,0 +1,49 @@
+﻿@model HavaYoluMVC.Models.MVCUcakmodel
+@{
+    ViewBag.Title = "Ekle";
+}
+
+<div class="form-body">
+
+    @using (Html.BeginForm())
+    {
+
+        @Html.HiddenFor(model => model.UcakNo)
+
+        <div class="form-control">
+            @Html.LabelFor(Model => Model.UcakAdi)<br />
+        </div>
+        <div class="form-control">
+            @Html.EditorFor(Model => Model.UcakAdi)
+            @Html.ValidationMessageFor(model => model.UcakAdi)
+        </div>
+
+
+        <div class="form-control">
+            @Html.LabelFor(Model => Model.UcakTipi)<br />
+        </div>
+        <div class="form-control">
+            @Html.EditorFor(Model => Model.UcakTipi)
+            @Html.ValidationMessageFor(model => model.UcakTipi)
+        </div>
+
+        <div class="form-control">
+            @Html.LabelFor(Model => Model.SirketNo)<br />
+        </div>
+        <div class="form-control">
+            @Html.EditorFor(Model => Model.SirketNo)
+            @Html.ValidationMessageFor(model => model.SirketNo)
+        </div>
+
+        <div class="form-control">
+            <input type="submit" value="kaydet" class="btn btn-success" />
+            <input type="reset" value="reset" class="btn btn-success" />
+        </div>
+
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}
+

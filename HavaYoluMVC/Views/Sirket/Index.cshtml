@@ -1,0 +1,69 @@
+﻿@model IEnumerable<HavaYoluMVC.Models.MVCSirketmodel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Ekle")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SirketAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sirketİl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SirketKurulus)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SirketAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sirketİl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SirketKurulus)
+            </td>
+            <td>
+                @*crud=listele,ekle,guncelle,sil
+                    crup=ekle,güncelle*@
+                @* eklemeyi ve düzenlemeyi aynı yerden yapmak için crup denir.*@
+                <a href="@Url.Action("Ekle","Sirket",new { id=item.SirketNo})" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i>Edit</a>
+                <a onclick="sil(@item.SirketNo)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>Sil</a>
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script>
+        $(function () {
+
+            var successMessage ='@TempData["SuccessMessage"]';          /* uyarıyı farklı bir view sayfasında vermek istiyorsak tempdata kullanıyoruz aynı sayfada ise viewdata kullanıyoruz. */
+            if (successMessage != '')
+                alertify.success(successMessage);
+            });
+
+        function sil(id) {
+            alertify.confirm("silme islemi", "kayıtı silmek istermisin ?", function () {    /* if else yerine geçer soru işareti (?) */
+                window.location.href = '@Url.Action("sil","Sirket")/' + id;}, null);    /* window.location.href=pop up haline getiriyor uyarıyı*/
+
+        }
+
+
+
+    </script>
+}
